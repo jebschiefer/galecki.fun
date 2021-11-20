@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: database
+      WORDPRESS_DB_USER: galecki
+      WORDPRESS_DB_PASSWORD: galecki
+      WORDPRESS_DB_NAME: galecki
+    volumes:
+      # Core WordPress
+      - wordpress:/var/www/html
+      # Custom theme
+      - ./wp-content/themes/galecki-fun:/var/www/html/wp-content/themes/galecki-fun
+      # User uploaded files
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+      # Custom plugin example
+      # - ./wp-content/plugins/my-plugin:/var/www/html/wp-content/plugins/my-plugin
+
+  database:
+    image: mariadb:10.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: galecki
+      MYSQL_USER: galecki
+      MYSQL_PASSWORD: galecki
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - database:/var/lib/mysql
+      # SQL Dump to initialize database
+      - ./database-init:/docker-entrypoint-initdb.d
+
+volumes:
+  wordpress: {}
+  database: {}
