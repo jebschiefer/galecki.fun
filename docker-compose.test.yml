@@ -1,0 +1,11 @@
+services:
+
+  wordpress:
+    container_name: test-galecki-fun-wordpress
+    restart: always
+    ports:
+      - 8000:80
+
+  database:
+    container_name: test-galecki-fun-database
+    restart: always

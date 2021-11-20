@@ -4,9 +4,6 @@ services:
 
   wordpress:
     image: wordpress
-    restart: always
-    ports:
-      - 8080:80
     environment:
       WORDPRESS_DB_HOST: database
       WORDPRESS_DB_USER: galecki
@@ -24,7 +21,6 @@ services:
 
   database:
     image: mariadb:10.7
-    restart: always
     environment:
       MYSQL_DATABASE: galecki
       MYSQL_USER: galecki
@@ -33,7 +29,7 @@ services:
     volumes:
       - database:/var/lib/mysql
       # SQL Dump to initialize database
-      - ./database-init:/docker-entrypoint-initdb.d
+      #- ./database-init:/docker-entrypoint-initdb.d
 
 volumes:
   wordpress: {}

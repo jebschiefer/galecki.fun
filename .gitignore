@@ -1,6 +1,8 @@
 database-init/
 wp-content/uploads/
 
+docker-compose.override.yml
+
 .DS_Store
 
 .vscode/
