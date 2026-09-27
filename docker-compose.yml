@@ -1,7 +1,7 @@
 services:
 
   wordpress:
-    image: wordpress
+    image: wordpress:php8.5
     environment:
       WORDPRESS_DB_HOST: database
       WORDPRESS_DB_USER: galecki
