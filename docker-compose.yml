@@ -1,9 +1,7 @@
-version: "3.9"
-
 services:
 
   wordpress:
-    image: wordpress
+    image: wordpress:php8.5
     environment:
       WORDPRESS_DB_HOST: database
       WORDPRESS_DB_USER: galecki
@@ -20,8 +18,10 @@ services:
       # - ./wp-content/plugins/my-plugin:/var/www/html/wp-content/plugins/my-plugin
 
   database:
-    image: mariadb:10.7
+    image: mariadb:12.3
     environment:
+      # Uncomment for database upgrades
+      # MARIADB_AUTO_UPGRADE: 1
       MYSQL_DATABASE: galecki
       MYSQL_USER: galecki
       MYSQL_PASSWORD: galecki
